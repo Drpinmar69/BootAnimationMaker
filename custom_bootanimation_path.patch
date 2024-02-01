@@ -1,0 +1,204 @@
+Subject: [PATCH] custom bootanimation path
+---
+Index: PackageMake.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/PackageMake.py b/PackageMake.py
+--- a/PackageMake.py	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/PackageMake.py	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -141,7 +141,7 @@
+     :param module_export_file_path:
+     :return: None
+     """
+-    os.mkdir(module_media_dir_path)
++    os.makedirs(module_media_dir_path)
+     shutil.move(bootani_zip_path, module_media_dir_path)
+     os.remove(placeholder_path)
+     utils.dir2zipfile(template_dir_path, module_export_file_path)
+Index: config_template.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config_template.yml b/config_template.yml
+--- a/config_template.yml	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/config_template.yml	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -1,9 +1,16 @@
+ # Boot Animation Maker config template
+ #
++
+ # Magisk Module output filename
+ 'module_export_filename': 'BootAniMagiskModule.zip'
++
+ # Screen size [w x h], use the maximum size
+ 'device_size': [1080, 1920]
++
++# For some phone model，the location of Bootanimation.zip may be different e.g. Google Pixel
++# Uncomment it when use custom path
++#'media_dir_path': ['system', 'product', 'media']
++
+ # Specify the FPS, it should be matched to gif,
+ # For animation contains only one part, If it doesn't match, the script will ask if to replace the this FPS with the actual FPS.
+ # For animation contains more than one part, each gif needs to have the same or similar FPS (diff<=5), the script will use the average of FPS instead，If the difference is too large, stop generating.
+Index: config_template_CN.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config_template_CN.yml b/config_template_CN.yml
+--- a/config_template_CN.yml	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/config_template_CN.yml	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -1,9 +1,16 @@
+ # Boot Animation Maker 配置文件模板
+ #
++
+ # Magisk Module 输出的文件名
+ 'module_export_filename': 'BootAniMagiskModule.zip'
++
+ # 设备尺寸 [w x h]，异形屏考虑使用最大外边框尺寸
+ 'device_size': [1080, 1920]
++
++# 对于某些机型，Bootanimation.zip 的路径可能会不同，比如 Google Pixel
++# 清除注释以自定义路径
++# 'media_dir_path': ['system', 'product', 'media']
++
+ # 指定播放动画的帧率，注意与 gif 相匹配,
+ # 对于单 part 的动画，如果不匹配则脚本运行过程中会提示是否以实际 FPS 代替指定的 FPS
+ # 对于多个 part 的动画，各个 gif 需要 FPS 数相同或相近(diff<=5)，如果相近则会提示使用两者的平均值代替指定的 FPS，如果 FPS 相差过大则停止生成
+Index: example/1/config.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/example/1/config.yml b/example/1/config.yml
+--- a/example/1/config.yml	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/example/1/config.yml	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -6,6 +6,9 @@
+ 'device_size': [1080, 1920]
+ # 指定播放动画的帧率，注意与 gif 相匹配
+ 'fps': 10
++# 对于某些机型，Bootanimation.zip 的路径可能会不同，比如 Google Pixel
++# 清除注释以自定义路径
++# 'media_dir_path': ['system', 'product', 'media']
+ # ******************************************************
+ # 图层设定 'anime'
+ #           - {part0}
+Index: example/2/config.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/example/2/config.yml b/example/2/config.yml
+--- a/example/2/config.yml	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/example/2/config.yml	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -6,6 +6,9 @@
+ 'device_size': [1080, 1920]
+ # 指定播放动画的帧率，注意与 gif 相匹配
+ 'fps': 10
++# 对于某些机型，Bootanimation.zip 的路径可能会不同，比如 Google Pixel
++# 清除注释以自定义路径
++# 'media_dir_path': ['system', 'product', 'media']
+ # ******************************************************
+ # 图层设定 'anime'
+ #           - {part0}
+Index: example/3/config.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/example/3/config.yml b/example/3/config.yml
+--- a/example/3/config.yml	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/example/3/config.yml	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -6,6 +6,9 @@
+ 'device_size': [1080, 1920]
+ # 指定播放动画的帧率，注意与 gif 相匹配
+ 'fps': 10
++# 对于某些机型，Bootanimation.zip 的路径可能会不同，比如 Google Pixel
++# 清除注释以自定义路径
++# 'media_dir_path': ['system', 'product', 'media']
+ # ******************************************************
+ # 图层设定 'anime'
+ #           - {part0}
+Index: example/4/config.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/example/4/config.yml b/example/4/config.yml
+--- a/example/4/config.yml	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/example/4/config.yml	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -6,6 +6,9 @@
+ 'device_size': [1080, 1920]
+ # 指定播放动画的帧率，注意与 gif 相匹配
+ 'fps': 10
++# 对于某些机型，Bootanimation.zip 的路径可能会不同，比如 Google Pixel
++# 清除注释以自定义路径
++# 'media_dir_path': ['system', 'product', 'media']
+ # ******************************************************
+ # 图层设定 'anime'
+ #           - {part0}
+Index: example/5/config.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/example/5/config.yml b/example/5/config.yml
+--- a/example/5/config.yml	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/example/5/config.yml	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -6,6 +6,9 @@
+ 'device_size': [1080, 1920]
+ # 指定播放动画的帧率，注意与 gif 相匹配
+ 'fps': 15
++# 对于某些机型，Bootanimation.zip 的路径可能会不同，比如 Google Pixel
++# 清除注释以自定义路径
++# 'media_dir_path': ['system', 'product', 'media']
+ # ******************************************************
+ # 图层设定 'anime'
+ #           - {part0}
+Index: example/6/config.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/example/6/config.yml b/example/6/config.yml
+--- a/example/6/config.yml	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/example/6/config.yml	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -6,6 +6,9 @@
+ 'device_size': [1080, 1920]
+ # 指定播放动画的帧率，注意与 gif 相匹配
+ 'fps': 15
++# 对于某些机型，Bootanimation.zip 的路径可能会不同，比如 Google Pixel
++# 清除注释以自定义路径
++# 'media_dir_path': ['system', 'product', 'media']
+ # ******************************************************
+ # 图层设定 'anime'
+ #           - {part0}
+Index: run.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/run.py b/run.py
+--- a/run.py	(revision 5ca38abfed1132b8191e428f3e498b035e32b1b4)
++++ b/run.py	(revision 72b98ab5290ec46df732c14867c02de3d3fcaf1b)
+@@ -81,7 +81,7 @@
+     all_config = dict()
+     try:
+         with open(config_file_path, 'r', encoding='utf-8') as f:
+-            all_config = yaml.load(f)
++            all_config = yaml.load(f, Loader=yaml.Loader)
+ 
+     except FileNotFoundError:
+         pt.error(show_text.get('CONFIG_NOT_FOUND'))
+@@ -113,7 +113,8 @@
+     update_binary_file_path = os.path.join(template_dir_path, 'META-INF', 'com', 'google', 'android', 'update-binary')
+     module_prop_file_path = os.path.join(template_dir_path, 'module.prop')
+     module_install_file_path = os.path.join(template_dir_path, 'install.sh')
+-    module_media_dir_path = os.path.join(template_dir_path, 'system', 'media')
++    media_dir_path = all_config.get('media_dir_path', ['system', 'media'])
++    module_media_dir_path = os.path.join(template_dir_path, *media_dir_path)
+     module_placeholder_file_path = os.path.join(template_dir_path, 'system', 'placeholder')
+     module_export_file_path = os.path.join(export_dir_path, module_export_filename)
+ 
